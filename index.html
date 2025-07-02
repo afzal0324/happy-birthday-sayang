@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday, Sayang!</title>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Sayang!</title>
   <style>
     body {
-      background: url('file_00000000d468622faed99b0f1ea05fc2.png') no-repeat center center fixed;
+      margin: 0;
+      background: url('file_00000000d468622faed99b0f1ea05fc2.jpeg') no-repeat center center fixed;
       background-size: cover;
-      color: #ffffff;
       font-family: "Courier New", Courier, monospace;
-      padding: 20px;
-      font-size: 1.2em;
-      overflow: hidden;
+      color: #fff;
+      padding: 2em;
       text-shadow: 1px 1px 3px #000;
     }
     .cursor {
       display: inline-block;
       width: 10px;
-      background: #ffffff;
-      animation: blink 0.8s infinite;
+      background: #fff;
+      animation: blink 1s infinite;
     }
     @keyframes blink {
       0%, 50% { opacity: 1; }
-      50.01%, 100% { opacity: 0; }
+      51%, 100% { opacity: 0; }
     }
     .hearts {
       position: fixed;
@@ -31,7 +30,6 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
       z-index: -1;
     }
     .heart {
@@ -42,8 +40,7 @@
       transform: rotate(45deg);
       animation: fall 10s linear infinite;
     }
-    .heart::before,
-    .heart::after {
+    .heart::before, .heart::after {
       content: "";
       position: absolute;
       width: 20px;
@@ -52,20 +49,28 @@
       border-radius: 50%;
     }
     .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
+    .heart::after { top: 0; left: -10px; }
     @keyframes fall {
       0% { top: -10%; opacity: 1; }
       100% { top: 110%; opacity: 0; }
     }
   </style>
 </head>
-<body>
-  <audio autoplay loop>
-    <source src="romantic-piano.mp3" type="audio/mpeg">
+<body onclick="startAudio()">
+  <audio id="music" loop>
+    <source src="romantic-piano.mp3" type="audio/mpeg" />
+    Your browser does not support the audio tag.
   </audio>
+
   <div class="hearts"></div>
   <pre id="message"></pre>
+
   <script>
+    function startAudio() {
+      const music = document.getElementById("music");
+      music.play();
+    }
+
     const text = `
 Initializing birthday script...
 System check... OK ✔
@@ -85,8 +90,8 @@ Dan tetaplah jadi pribadi yang baik.
 Wish You All The Best 💖
 
 Dengan penuh cinta,
-Dari seseorang yang selalu memikirkanmu 😊
-    `;
+Dari seseorang yang selalu memikirkanmu 😊`;
+
     let i = 0;
     const speed = 30;
     const messageElement = document.getElementById("message");
@@ -115,3 +120,4 @@ Dari seseorang yang selalu memikirkanmu 😊
   </script>
 </body>
 </html>
+
