@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday, Sayang!</title>
+  <style>
+    body {
+      background: url('file_00000000d468622faed99b0f1ea05fc2.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      font-family: "Courier New", Courier, monospace;
+      padding: 20px;
+      font-size: 1.2em;
+      overflow: hidden;
+      text-shadow: 1px 1px 3px #000;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background: #ffffff;
+      animation: blink 0.8s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: fall 10s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes fall {
+      0% { top: -10%; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_b4825d3e3c.mp3?filename=romantic-piano-ambient-122163.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <div class="hearts"></div>
+  <pre id="message"></pre>
+  <script>
+    const text = `
+Initializing birthday script...
+System check... OK ✔
+Connecting to the heart of Rayhan Fitri... 💓
+Loading special message...
+
+Dear Sayang,
+
+Happy Birthday sayang 🎉🎂
+Selamat bertambah umur.
+Semoga selalu diberi kesehatan,
+Dimudahkan segala urusan,
+Dikabulkan semua keinginan.
+
+Dan tetaplah jadi pribadi yang baik.
+
+Wish You All The Best 💖
+
+Dengan penuh cinta,
+Dari seseorang yang selalu memikirkanmu 😊
+    `;
+    let i = 0;
+    const speed = 30;
+    const messageElement = document.getElementById("message");
+
+    function typeWriter() {
+      if (i < text.length) {
+        messageElement.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } else {
+        messageElement.innerHTML += '<span class="cursor"></span>';
+      }
+    }
+
+    typeWriter();
+
+    const heartContainer = document.querySelector('.hearts');
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDelay = Math.random() * 10 + 's';
+      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+      heartContainer.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
